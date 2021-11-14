@@ -7,6 +7,7 @@ interface User {
 	nombre: string;
 	apellido: string;
 	rol: Enum_Rol;
+	estado: Enum_EstadoUsuario;
 }
 
 const userSchema = new Schema<User>({
@@ -33,8 +34,14 @@ const userSchema = new Schema<User>({
 		required: true,
 		enum: Enum_Rol,
 	},
+
+	estado: {
+		type: String,
+		enum: Enum_EstadoUsuario,
+		default: Enum_EstadoUsuario.pendiente,
+	},
 });
 
 const UserModel = model('User', userSchema);
 
-export default UserModel;
+export { UserModel };
