@@ -2,7 +2,7 @@ import { connect } from 'mongoose';
 
 const connectDB = async () => {
 	return await connect(
-		'mongodb+srv://admin:admin1234@cluster0.4crxc.mongodb.net/projectManagement?retryWrites=true&w=majority'
+		'UrlLink'
 	)
     .then(() => {
         console.log('Connection succesfully');

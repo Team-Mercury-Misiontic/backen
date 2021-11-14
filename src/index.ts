@@ -1,5 +1,5 @@
 import connectDB from './db/db';
-import { AdvancesModel } from './models/avances';
+import { AdvancesModel } from './models/advances';
 import { Enum_Rol } from './models/enums';
 import { ProjectModel } from './models/projects';
 import { UserModel } from './models/user';
