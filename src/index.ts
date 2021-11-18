@@ -6,7 +6,6 @@ import express = require('express');
 import cors = require('cors');
 import dotenv = require('dotenv');
 
-
 dotenv.config();
 
 const server = new ApolloServer({
@@ -20,7 +19,7 @@ app.use(express.json());
 
 app.use(cors());
 
-app.listen({ port: 4000 }, async () => {
+app.listen({ port: process.env.PORT }, async () => {
 	await connectDB();
 	await server.start();
 

@@ -26,12 +26,6 @@ const typeDefs = gql`
 	type Query {
 		Usuarios: [Usuario]
 	}
-
-	type Mutation {
-		crearUsuario(
-			
-		): Usuario
-	}
 `;
 
 export { typeDefs };
