@@ -6,7 +6,7 @@ const typeDefs = gql`
 		AUTORIZADO
 		NO_AUTORIZADO
 	}
-	
+
 	enum Enum_Rol {
 		ESTUDIANTE
 		LIDER
@@ -20,11 +20,33 @@ const typeDefs = gql`
 		identificacion: String!
 		correo: String!
 		estado: Enum_EstadoUsuario!
-		rol:Enum_Rol!
+		rol: Enum_Rol!
 	}
 
 	type Query {
 		Usuarios: [Usuario]
+	}
+
+	type Mutation {
+		crearUsuario(
+			nombre: String!
+			apellido: String!
+			identificacion: String!
+			correo: String!
+			rol: Enum_Rol!
+			estado: Enum_EstadoUsuario
+		): Usuario
+
+		editarUsuario(
+			nombre: String!
+			apellido: String!
+			identificacion: String!
+			correo: String!
+			rol: Enum_Rol!
+			estado: Enum_EstadoUsuario
+		): Usuario
+
+		eliminarUsuario(_id: String!): Usuario
 	}
 `;
 
