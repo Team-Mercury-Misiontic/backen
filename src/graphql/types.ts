@@ -1,7 +1,6 @@
 import { gql } from 'apollo-server-core';
 
 const typeDefs = gql`
-
 	scalar Date
 
 	enum Enum_EstadoUsuario {
@@ -18,13 +17,13 @@ const typeDefs = gql`
 
 	enum Enum_EstadoProyecto {
 		ACTIVO
-		INACTIVO 
+		INACTIVO
 	}
 
 	enum Enum_FaseProyecto {
-		INICADO
+		INICIADO
 		DESARROLLO
-		TERMINADO 
+		TERMINADO
 		NULA
 	}
 
@@ -50,7 +49,6 @@ const typeDefs = gql`
 	}
 
 	input crearObjetivo {
-		_id: ID!
 		descripcion: String!
 		tipo: Enum_TipoObjetivo!
 	}
@@ -93,7 +91,16 @@ const typeDefs = gql`
 
 		eliminarUsuario(_id: String!): Usuario
 
-		
+		crearProyecto(
+			nombre: String!
+			presupuesto: Float!
+			fechaInicio: Date!
+			fechaFin: Date!
+			estado: Enum_EstadoProyecto
+			fase: Enum_FaseProyecto
+			lider: String!
+			objetivos: [crearObjetivo]
+		): Proyecto
 	}
 `;
 
