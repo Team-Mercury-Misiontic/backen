@@ -1,4 +1,5 @@
 import { argsToArgsConfig } from 'graphql/type/definition';
+import { ProjectModel } from '../models/projects';
 import { UserModel } from '../models/user';
 
 const resolvers = {
@@ -6,6 +7,11 @@ const resolvers = {
 		Usuarios: async (parent, args) => {
 			const usuarios = await UserModel.find();
 			return usuarios;
+		},
+
+		Proyectos: async (parent, args) => {
+			const proyectos = await ProjectModel.find().populate('lider');
+			return proyectos;
 		},
 	},
 
@@ -33,7 +39,7 @@ const resolvers = {
 				identificacion: args.identificacion,
 				correo: args.correo,
 				rol: args.rol,
-				estado: args.estado
+				estado: args.estado,
 			});
 
 			return usuarioEditado;

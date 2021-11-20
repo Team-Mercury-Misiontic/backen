@@ -5,6 +5,9 @@ import { resolvers } from './graphql/resolvers';
 import express = require('express');
 import cors = require('cors');
 import dotenv = require('dotenv');
+import { ObjectiveModel } from './models/objective';
+import { ProjectModel } from './models/projects';
+import { Enum_TipoObjetivo } from './models/enums';
 
 dotenv.config();
 

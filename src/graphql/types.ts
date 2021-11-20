@@ -1,6 +1,9 @@
 import { gql } from 'apollo-server-core';
 
 const typeDefs = gql`
+
+	scalar Date
+
 	enum Enum_EstadoUsuario {
 		PENDIENTE
 		AUTORIZADO
@@ -13,6 +16,23 @@ const typeDefs = gql`
 		ADMINISTRADOR
 	}
 
+	enum Enum_EstadoProyecto {
+		ACTIVO
+		INACTIVO 
+	}
+
+	enum Enum_FaseProyecto {
+		INICADO
+		DESARROLLO
+		TERMINADO 
+		NULA
+	}
+
+	enum Enum_TipoObjetivo {
+		GENERAL
+		ESPECIFICO
+	}
+
 	type Usuario {
 		_id: ID
 		nombre: String!
@@ -23,8 +43,33 @@ const typeDefs = gql`
 		rol: Enum_Rol!
 	}
 
+	type Objetivo {
+		_id: ID!
+		descripcion: String!
+		tipo: Enum_TipoObjetivo!
+	}
+
+	input crearObjetivo {
+		_id: ID!
+		descripcion: String!
+		tipo: Enum_TipoObjetivo!
+	}
+
+	type Proyecto {
+		_id: ID!
+		nombre: String!
+		presupuesto: Float!
+		fechaInicio: Date!
+		fechaFin: Date!
+		estado: Enum_EstadoProyecto
+		fase: Enum_FaseProyecto
+		lider: Usuario!
+		objetivos: [Objetivo]
+	}
+
 	type Query {
 		Usuarios: [Usuario]
+		Proyectos: [Proyecto]
 	}
 
 	type Mutation {
@@ -47,6 +92,8 @@ const typeDefs = gql`
 		): Usuario
 
 		eliminarUsuario(_id: String!): Usuario
+
+		
 	}
 `;
 
