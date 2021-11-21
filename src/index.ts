@@ -14,6 +14,7 @@ dotenv.config();
 const server = new ApolloServer({
 	typeDefs: typeDefs,
 	resolvers: resolvers,
+	introspection: false,
 });
 
 const app = express();

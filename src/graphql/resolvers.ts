@@ -51,6 +51,18 @@ const resolvers = {
 			});
 			return usuarioEliminado;
 		},
+
+		crearProyecto: async (parent, args) => {
+			const proyectoCreado = await ProjectModel.create({
+				nombre: args.nombre,
+				fechaInicio: args.fechaInicio,
+				fechaFin: args.fechaFin,
+				presupuesto: args.presupuesto,
+				lider: args.lider,
+				objetivos: args.objetivos,
+			});
+			return proyectoCreado;
+		},
 	},
 };
 
