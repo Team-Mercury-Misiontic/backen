@@ -1,20 +1,16 @@
 import { ApolloServer } from 'apollo-server-express';
 import connectDB from './db/db';
-import { typeDefs } from './graphql/types';
+import { types } from './graphql/types';
 import { resolvers } from './graphql/resolvers';
 import express = require('express');
 import cors = require('cors');
 import dotenv = require('dotenv');
-import { ObjectiveModel } from './models/objective';
-import { ProjectModel } from './models/projects';
-import { Enum_TipoObjetivo } from './models/enums';
 
 dotenv.config();
 
 const server = new ApolloServer({
-	typeDefs: typeDefs,
+	typeDefs: types,
 	resolvers: resolvers,
-	introspection: true,
 });
 
 const app = express();
