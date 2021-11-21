@@ -60,7 +60,7 @@ const resolvers = {
 				presupuesto: args.presupuesto,
 				lider: args.lider,
 				objetivos: args.objetivos,
-			}).populate('lider');
+			});
 			return proyectoCreado;
 		},
 	},
