@@ -1,9 +1,11 @@
-import { AdvancesModel } from './advance';
+import { AdvancesModel } from './advance.js';
 
 const advancesResolver = {
 	Query: {
 		Avances: async (parents, args) => {
-			const avance = await AdvancesModel.find();
+			const avance = await AdvancesModel.find()
+				.populate('proyecto')
+				.populate('creadoPor');
 			return avance;
 		},
 	},

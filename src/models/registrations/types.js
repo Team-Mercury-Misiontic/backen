@@ -5,7 +5,7 @@ const registrationTypes = gql`
 		_id: ID!
 		proyecto: Proyecto!
 		estudiante: Usuario!
-		estado: Enum_EstadoInscripcion!
+		estado: String!
 		fechaIngreso: Date!
 		fechaEgreso: Date!
 	}
@@ -18,7 +18,7 @@ const registrationTypes = gql`
 		crearRegistro(
 			proyecto: String!
 			estudiante: String!
-			estado: Enum_EstadoInscripcion!
+			estado: String!
 			fechaIngreso: Date!
 			echaEgreso: Date!
 		): Registro

@@ -1,4 +1,4 @@
-import { RegistrationModel } from './registration';
+import { RegistrationModel } from './registration.js';
 
 const registrationsResolvers = {
 	Query: {

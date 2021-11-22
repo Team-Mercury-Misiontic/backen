@@ -1,4 +1,4 @@
-import { ProjectModel } from './project';
+import { ProjectModel } from './project.js';
 
 
 const projectResolvers = {
