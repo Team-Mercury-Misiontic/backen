@@ -19,7 +19,7 @@ app.use(express.json());
 
 app.use(cors());
 
-app.listen({ port: process.env.PORT }, async () => {
+app.listen({ port: process.env.PORT || 4000 }, async () => {
 	await connectDB();
 	await server.start();
 
