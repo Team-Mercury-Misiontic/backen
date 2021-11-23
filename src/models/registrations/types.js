@@ -19,9 +19,10 @@ const registrationTypes = gql`
 			proyecto: String!
 			estudiante: String!
 			estado: Enum_EstadoInscripcion!
-			fechaIngreso: Date!
-			fechaEgreso: Date!
+			# fechaIngreso: Date!
+			# fechaEgreso: Date!
 		): Registro
+		aprobarInscripcion(id: String!): Registro
 	}
 `;
 
