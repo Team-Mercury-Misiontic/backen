@@ -20,7 +20,7 @@ const registrationTypes = gql`
 			estudiante: String!
 			estado: Enum_EstadoInscripcion!
 			fechaIngreso: Date!
-			echaEgreso: Date!
+			fechaEgreso: Date!
 		): Registro
 	}
 `;

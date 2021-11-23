@@ -3,7 +3,9 @@ import { RegistrationModel } from './registration.js';
 const registrationsResolvers = {
 	Query: {
 		Registros: async (parents, args) => {
-			const registros = await RegistrationModel.find();
+			const registros = await RegistrationModel.find()
+				.populate('estudiante')
+				.populate('proyecto');
 
 			return registros;
 		},
@@ -18,6 +20,8 @@ const registrationsResolvers = {
 				fechaIngreso: args.fechaIngreso,
 				fechaEgreso: args.fechaEgreso,
 			});
+
+			return nuevoRegistro;
 		},
 	},
 };

@@ -22,10 +22,13 @@ const projectTypes = gql`
 		fase: Enum_FaseProyecto!
 		lider: Usuario!
 		objetivos: [Objetivo]
+		avances: [Avance]
+		registros:[Registro]
 	}
 
 	type Query {
 		Proyectos: [Proyecto]
+		Proyecto(_id: String!):Proyecto
 	}
 
 	type Mutation {

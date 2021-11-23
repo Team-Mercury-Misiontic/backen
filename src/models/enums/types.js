@@ -26,8 +26,9 @@ const enumTypes = gql`
 		ESPECIFICO
 	}
 	enum Enum_EstadoInscripcion {
-		ACEPATADA
+		ACEPTADA
 		RECHAZADA
+		PENDIENTE
 	}
 `;
 

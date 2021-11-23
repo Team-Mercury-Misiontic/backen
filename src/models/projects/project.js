@@ -19,8 +19,8 @@ const { Schema, model } = mongoose;
 // 	];
 // }
 
-const projectSchema =
-	new Schema({
+const projectSchema = new Schema(
+	{
 		nombre: {
 			type: String,
 			required: true,
@@ -66,7 +66,24 @@ const projectSchema =
 				},
 			},
 		],
-	});
+	},
+	{
+		toJSON: { virtuals: true }, // So `res.json()` and other `JSON.stringify()` functions include virtuals
+		toObject: { virtuals: true }, // So `console.log()` and other functions that use `toObject()` include virtuals
+	}
+);
+
+projectSchema.virtual('avances', {
+	ref: 'Advances',
+	localField: '_id',
+	foreignField: 'proyecto',
+});
+
+projectSchema.virtual('registros', {
+	ref:"Registrations",
+	localField:"_id",
+	foreignField:'proyecto'
+})
 
 const ProjectModel = model('Project', projectSchema);
 
