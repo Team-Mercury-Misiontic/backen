@@ -17,8 +17,8 @@ const registrationsResolvers = {
 				proyecto: args.proyecto,
 				estudiante: args.estudiante,
 				estado: args.estado,
-				// fechaIngreso: args.fechaIngreso,
-				// fechaEgreso: args.fechaEgreso,
+				fechaIngreso: args.fechaIngreso,
+				fechaEgreso: args.fechaEgreso,
 			});
 
 			return nuevoRegistro;

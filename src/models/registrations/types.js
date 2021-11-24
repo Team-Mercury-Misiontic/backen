@@ -6,8 +6,8 @@ const registrationTypes = gql`
 		proyecto: Proyecto!
 		estudiante: Usuario!
 		estado: Enum_EstadoInscripcion!
-		fechaIngreso: Date!
-		fechaEgreso: Date!
+		fechaIngreso: Date
+		fechaEgreso: Date
 	}
 
 	type Query {
@@ -19,8 +19,8 @@ const registrationTypes = gql`
 			proyecto: String!
 			estudiante: String!
 			estado: Enum_EstadoInscripcion!
-			# fechaIngreso: Date!
-			# fechaEgreso: Date!
+			fechaIngreso: Date!
+			fechaEgreso: Date!
 		): Registro
 		aprobarInscripcion(id: String!): Registro
 	}
