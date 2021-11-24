@@ -16,6 +16,13 @@ const userSchema =
 			type: String,
 			required: true,
 			unique: true,
+			validate: {
+				validator: (email) => {
+					return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+				},
+
+				message: "El formato de correo es incorrecto"
+			}
 		},
 		password:{
 			type: String,
