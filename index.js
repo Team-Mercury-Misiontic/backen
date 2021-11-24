@@ -1,7 +1,7 @@
 import { ApolloServer } from 'apollo-server-express';
 import connectDB from './db/db.js';
-import { types } from './src/graphql/types.js';
-import { resolvers } from './src/graphql/resolvers.js';
+import { types } from './graphql/types.js';
+import { resolvers } from './graphql/resolvers.js';
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
