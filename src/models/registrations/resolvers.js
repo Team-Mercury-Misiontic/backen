@@ -23,6 +23,17 @@ const registrationsResolvers = {
 
 			return nuevoRegistro;
 		},
+		aprobarInscripcion: async (parent, args) => {
+			const inscripcionAprobada = await InscriptionModel.findByIdAndUpdate(
+			  args.id,
+			  {
+				estado: 'ACEPTADO',
+				fechaIngreso: Date.now(),
+			  },
+			  { new: true }
+			);
+			return inscripcionAprobada;
+		  },
 	},
 };
 

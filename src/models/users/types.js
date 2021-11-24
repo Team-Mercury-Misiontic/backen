@@ -27,6 +27,7 @@ const userTypes = gql`
 		): Usuario
 
 		editarUsuario(
+			_id: String!
 			nombre: String!
 			apellido: String!
 			identificacion: String!
@@ -35,7 +36,7 @@ const userTypes = gql`
 			estado: Enum_EstadoUsuario!
 		): Usuario
 
-		eliminarUsuario(_id: String!): Usuario
+		eliminarUsuario(_id: String, correo: String): Usuario
 
 	}
 `;
