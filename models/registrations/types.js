@@ -22,6 +22,7 @@ const registrationTypes = gql`
 			fechaIngreso: Date!
 			fechaEgreso: Date!
 		): Registro
+		
 		aprobarInscripcion(id: String!): Registro
 	}
 `;
