@@ -17,6 +17,10 @@ const userSchema =
 			required: true,
 			unique: true,
 		},
+		password:{
+			type: String,
+			required: true,
+		},
 		identificacion: {
 			type: String,
 			required: true,
