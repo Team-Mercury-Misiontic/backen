@@ -24,10 +24,10 @@ const registrationsResolvers = {
 			return nuevoRegistro;
 		},
 		aprobarInscripcion: async (parent, args) => {
-			const inscripcionAprobada = await InscriptionModel.findByIdAndUpdate(
+			const inscripcionAprobada = await RegistrationModel.findByIdAndUpdate(
 			  args.id,
 			  {
-				estado: 'ACEPTADO',
+				estado: 'ACEPTADA',
 				fechaIngreso: Date.now(),
 			  },
 			  { new: true }
