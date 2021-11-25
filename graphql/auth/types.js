@@ -1,6 +1,8 @@
 import {gql} from 'apollo-server-express';
 
 const typesAuthentication =gql `
+
+
     type Mutation{
         register(
             nombre: String!
@@ -11,6 +13,7 @@ const typesAuthentication =gql `
 			estado: Enum_EstadoUsuario!
             password: String!
         ):String
+        
     }
 `;
 
