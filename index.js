@@ -8,9 +8,27 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const getUserData =(token) =>{
+	const verification=validateToken(token.split(' ')[1]);
+	if(verification.data){
+		return verification.data;
+	}else{
+		return null;
+	}
+};
 const server = new ApolloServer({
 	typeDefs: types,
 	resolvers: resolvers,
+	context: ({ req }) => {
+		const token = req.headers?.authorization ?? null;
+		if (token) {
+		  const userData = getUserData(token);
+		  if (userData) {
+			return { userData };
+		  }
+		}
+		return null;
+	  },
 });
 
 const app = express();
