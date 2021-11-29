@@ -26,6 +26,7 @@ const advancesTypes = gql`
             id: String!
             descripcion: String
         ): Avance
+		createAvance(idProyecto: String!, observaciones:String!):Avance
 	}
 `;
 

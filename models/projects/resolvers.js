@@ -30,7 +30,8 @@ const projectResolvers = {
 				presupuesto: args.presupuesto,
 				lider: args.lider,
 				objetivos: args.objetivos,
-			});
+			}
+			);
 			return nuevoProyecto;
 		},
 
@@ -51,7 +52,66 @@ const projectResolvers = {
 			);
 
 			return proyectoEditado;
-		},	
+		},
+		
+		createObjective: async (parent,args)=>{
+			const proyectWithObjective= await ProjectModel.findByIdAndUpdate(
+				args.idProyecto,
+				{
+					$addToSet:{
+						objetivos:{
+							descripcion: args.descripcion,
+							tipo: args.tipo,
+						},
+					},
+				},
+				{new:true}				
+				);
+
+				return proyectWithObjective;
+		},
+
+		// editObjective: async (parent,args)=>{
+		// 	const editObjectiveProyec= await ProjectModel.findByIdAndUpdate(
+		// 		{_id:args.idProyecto,objetivos:args.idObjetivo},
+		// 		{
+		// 			$set:{
+		// 				"objetivos.$.descripcion":args.descripcion,
+		// 				"objetivos.$.tipo":args.tipo
+		// 			},	
+		// 	}, {new:true}
+		// 	);
+		// 	return 	editObjectiveProyec;
+		// }, para estudio
+
+		editObjective: async (parent,args)=>{
+			const editObjectiveProyec= await ProjectModel.findByIdAndUpdate(
+				args.idProyecto,
+				{
+					$set:{
+						[`objetivos.${args.indexObjetivo}.descripcion`]:args.descripcion,
+						[`objetivos.${args.indexObjetivo}.tipo`]:args.tipo,
+					},	
+				}, 
+				{new:true}
+			);
+			return 	editObjectiveProyec;
+		},
+
+		deleteObjective: async (parent,args)=>{
+			const deleteObjectiveProyec= await ProjectModel.findByIdAndUpdate(
+				{_id: args.idProyecto},
+				{
+					$pull:{
+						objetivos:{
+							_id:args.idObjetivo,
+						},
+					},	
+				}, 
+				{new:true}
+			);
+			return 	deleteObjectiveProyec;
+		},
 
 	},
 };

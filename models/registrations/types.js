@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-core';
 
 const registrationTypes = gql`
-	type Registro {
+	type Inscripcion {
 		_id: ID!
 		proyecto: Proyecto!
 		estudiante: Usuario!
@@ -11,7 +11,7 @@ const registrationTypes = gql`
 	}
 
 	type Query {
-		Registros: [Registro]
+		Inscripciones: [Inscripcion]
 	}
 
 	type Mutation {
@@ -21,9 +21,9 @@ const registrationTypes = gql`
 			estado: Enum_EstadoInscripcion!
 			fechaIngreso: Date!
 			fechaEgreso: Date!
-		): Registro
+		): Inscripcion
 		
-		aprobarInscripcion(id: String!): Registro
+		aprobarInscripcion(id: String!): Inscripcion
 	}
 `;
 

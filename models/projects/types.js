@@ -54,6 +54,18 @@ const projectTypes = gql`
 			lider: String!
 			objetivos: [crearObjetivo]
 		): Proyecto
+
+		createObjective(idProyecto: String!, descripcion:String!, tipo: Enum_TipoObjetivo!):Proyecto
+		
+		# editObjective(idProyecto: String!, idObjetivo: String!, descripcion:String!, tipo: Enum_TipoObjetivo!):Proyecto
+		# opcion para estudiarla
+
+		editObjective(idProyecto: String!, indexObjetivo: Int!, descripcion:String!, tipo: Enum_TipoObjetivo!):Proyecto
+
+		deleteObjective(idProyecto: String!,idObjetivo: String!):Proyecto
+
+
+
 	}
 `;
 

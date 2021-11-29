@@ -2,12 +2,12 @@ import { RegistrationModel } from './registration.js';
 
 const registrationsResolvers = {
 	Query: {
-		Registros: async (parents, args) => {
+		Inscripciones: async (parents, args) => {
 			const registros = await RegistrationModel.find()
 				.populate('estudiante')
 				.populate('proyecto');
 
-			return registros;
+			return inscripciones;
 		},
 	},
 
