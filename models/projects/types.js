@@ -23,7 +23,7 @@ const projectTypes = gql`
 		lider: Usuario!
 		objetivos: [Objetivo]
 		avances: [Avance]
-		registros:[Registro]
+		registros:[Inscripcion]
 	}
 
 	type Query {

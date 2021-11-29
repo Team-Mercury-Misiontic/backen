@@ -7,7 +7,6 @@ const userTypes = gql`
 		apellido: String!
 		identificacion: String!
 		correo: String!
-		estado: Enum_EstadoUsuario!
 		rol: Enum_Rol!
 		estado: Enum_EstadoUsuario
     	inscripciones: [Inscripcion]

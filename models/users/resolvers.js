@@ -71,7 +71,7 @@ const userResolvers = {
 
 	},
 };
-
+export { userResolvers };
 // Query: {
 // 	Usuarios: async (parent, args) => {
 // 		const usuarios = await UserModel.find();
@@ -102,4 +102,4 @@ const userResolvers = {
 // 		return usuarioCreado;
 // 	},
 
-// export { userResolvers };
+
