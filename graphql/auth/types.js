@@ -16,6 +16,8 @@ const typesAuthentication = gql`
 			estado: Enum_EstadoUsuario
 			password: String!
 		): Token!
+
+		login(correo: String!, password: String!): Token!
 	}
 `;
 
