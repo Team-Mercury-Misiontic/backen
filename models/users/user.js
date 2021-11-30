@@ -55,7 +55,7 @@ const userSchema =
 	});
 
 	userSchema.virtual('proyectosLiderados', {
-		ref: 'Proyecto',
+		ref: 'Project',
 		localField: '_id',
 		foreignField: 'lider',
 	  });
