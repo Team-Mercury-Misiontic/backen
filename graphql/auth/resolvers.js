@@ -46,6 +46,10 @@ const resolverAuthentication = {
 				};
 			}
 		},
+
+		validateToken: async (parent, args, context) => {
+			console.log(context);
+		},
 	},
 };
 
