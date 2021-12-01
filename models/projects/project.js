@@ -28,8 +28,8 @@ const projectSchema = new Schema(
 		},
 		fase: {
 			type: String,
-			enum: ['INICIADO', 'EN DESAROLLO', 'TERMINADO', 'NULO'],
-			default: 'NULO',
+			enum: ['INICIADO', 'EN DESAROLLO', 'TERMINADO', 'NULA'],
+			default: 'NULA',
 		},
 		lider: {
 			type: Schema.Types.ObjectId,
