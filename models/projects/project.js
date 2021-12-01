@@ -3,22 +3,6 @@ import { UserModel } from '../users/user.js';
 
 const { Schema, model } = mongoose;
 
-// interface Project {
-// 	nombre: string;
-// 	presupuesto: number;
-// 	fechaInicio: Date;
-// 	fechaFin: Date;
-// 	estado: Enum_EstadoProyecto;
-// 	fase: Enum_FaseProyecto;
-// 	lider: Schema.Types.ObjectId;
-// 	objetivos: [
-// 		{
-// 			descripcion: string;
-// 			tipo: Enum_TipoObjetivo;
-// 		}
-// 	];
-// }
-
 const projectSchema = new Schema(
 	{
 		nombre: {
@@ -44,8 +28,8 @@ const projectSchema = new Schema(
 		},
 		fase: {
 			type: String,
-			enum: ['INICIADO', 'EN DESAROLLO', 'TERMINADO', 'NULO'],
-			default: 'NULO',
+			enum: ['INICIADO', 'EN DESAROLLO', 'TERMINADO', 'NULA'],
+			default: 'NULA',
 		},
 		lider: {
 			type: Schema.Types.ObjectId,
@@ -80,7 +64,7 @@ projectSchema.virtual('avances', {
 });
 
 projectSchema.virtual('registros', {
-	ref:"Registrations",
+	ref:"Inscripcion",
 	localField:"_id",
 	foreignField:'proyecto'
 })

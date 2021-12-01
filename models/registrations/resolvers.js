@@ -1,19 +1,19 @@
-import { RegistrationModel } from './registration.js';
+import { InscriptionModel } from './registration.js';
 
-const registrationsResolvers = {
+const resolverInscripciones = {
 	Query: {
-		Registros: async (parents, args) => {
-			const registros = await RegistrationModel.find()
+		Inscripciones: async (parents, args) => {
+			const registros = await InscriptionModel.find()
 				.populate('estudiante')
 				.populate('proyecto');
 
-			return registros;
+			return inscripciones;
 		},
 	},
 
 	Mutation: {
 		crearRegistro: async (parents, args) => {
-			const nuevoRegistro = await RegistrationModel.create({
+			const nuevoRegistro = await InscriptionModel.create({
 				proyecto: args.proyecto,
 				estudiante: args.estudiante,
 				estado: args.estado,
@@ -24,7 +24,7 @@ const registrationsResolvers = {
 			return nuevoRegistro;
 		},
 		aprobarInscripcion: async (parent, args) => {
-			const inscripcionAprobada = await RegistrationModel.findByIdAndUpdate(
+			const inscripcionAprobada = await InscriptionModel.findByIdAndUpdate(
 			  args.id,
 			  {
 				estado: 'ACEPTADA',
@@ -37,4 +37,4 @@ const registrationsResolvers = {
 	},
 };
 
-export { registrationsResolvers };
+export { resolverInscripciones };

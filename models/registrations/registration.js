@@ -5,7 +5,7 @@ import { UserModel } from '../users/user.js';
 const { Schema, model } = mongoose;
 
 
-const Registrationschema = new Schema({
+const inscriptionSchema = new Schema({
 	estado: {
 		type: String,
 		enum:['ACEPTADA', 'RECHAZADA', 'PENDIENTE'],
@@ -33,6 +33,6 @@ const Registrationschema = new Schema({
 	},
 });
 
-const RegistrationModel = model('Registrations', Registrationschema);
+const InscriptionModel = model('Inscripcion', inscriptionSchema);
 
-export { RegistrationModel };
+export { InscriptionModel };
