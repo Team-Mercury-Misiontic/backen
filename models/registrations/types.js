@@ -18,9 +18,6 @@ const registrationTypes = gql`
 		crearRegistro(
 			proyecto: String!
 			estudiante: String!
-			estado: Enum_EstadoInscripcion!
-			fechaIngreso: Date!
-			fechaEgreso: Date!
 		): Inscripcion
 		
 		aprobarInscripcion(id: String!): Inscripcion
