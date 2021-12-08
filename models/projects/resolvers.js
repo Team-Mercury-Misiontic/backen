@@ -7,7 +7,7 @@ const projectResolvers = {
 	Proyecto: {
 		lider: async (parent, args, context) => {
 		  const usr = await UserModel.findOne({
-			_id: parent.lider.toString(),
+			_id: parent.lider,
 		  });
 		  return usr;
 		},
