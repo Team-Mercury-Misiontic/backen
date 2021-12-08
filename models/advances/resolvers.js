@@ -41,19 +41,19 @@ const advancesResolver = {
 			return avanceEditado;
 		},
 
-		// createAvance: async (parent,args)=>{
-		// 	const proyectWithAvance= await ProjectModel.findByIdAndUpdate(
-		// 		args.idProyecto,
-		// 		{
-		// 			$addToSet:{
-		// 				observaciones:args.observaciones
-		// 			},
-		// 		},
-		// 		{new:true}				
-		// 	);
+		createAvance: async (parent,args)=>{
+			const proyectWithAvance= await ProjectModel.findByIdAndUpdate(
+				args.idProyecto,
+				{
+					$addToSet:{
+						observaciones:args.observaciones
+					},
+				},
+				{new:true}				
+			);
 
-		// 	return createAvance;
-		// }
+			return createAvance;
+		}
 	},
 };
 
