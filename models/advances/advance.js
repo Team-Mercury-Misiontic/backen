@@ -15,10 +15,12 @@ const objectSchema = new Schema({
 	proyecto: {
 		type: Schema.Types.ObjectId,
 		ref: ProjectModel,
+		required: true,
 	},
 	fecha: {
 		type: Date,
-		required: true,
+		// required: true,
+		default: Date.now()
 	},
 	descripcion: {
 		type: String,
