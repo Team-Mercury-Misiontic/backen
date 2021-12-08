@@ -8,13 +8,20 @@ const advancesResolver = {
 				.populate('creadoPor');
 			return avance;
 		},
+		filtrarAvance: async (parents, args) => {
+			const avanceFiltrado = await AdvancesModel.find({ proyecto: args._id })
+			 .populate('proyecto')
+			  .populate('creadoPor');
+			return avanceFiltrado;
+		  },
 	},
+	
 
 	Mutation: {
 		crearAvance: async (parents, args) => {
 			const nuevoAvance = await AdvancesModel.create({
 				proyecto: args.proyecto,
-				fecha: args.fecha,
+				// fecha: args.fecha,
 				descripcion: args.descripcion,
 				creadoPor: args.creadoPor,
 			});
@@ -34,19 +41,19 @@ const advancesResolver = {
 			return avanceEditado;
 		},
 
-		createAvance: async (parent,args)=>{
-			const proyectWithAvance= await ProjectModel.findByIdAndUpdate(
-				args.idProyecto,
-				{
-					$addToSet:{
-						observaciones:args.observaciones
-					},
-				},
-				{new:true}				
-			);
+		// createAvance: async (parent,args)=>{
+		// 	const proyectWithAvance= await ProjectModel.findByIdAndUpdate(
+		// 		args.idProyecto,
+		// 		{
+		// 			$addToSet:{
+		// 				observaciones:args.observaciones
+		// 			},
+		// 		},
+		// 		{new:true}				
+		// 	);
 
-			return createAvance;
-		}
+		// 	return createAvance;
+		// }
 	},
 };
 
