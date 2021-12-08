@@ -1,13 +1,25 @@
 import { InscriptionModel } from './registration.js';
+import { ProjectModel } from '../projects/project.js';
+import { UserModel } from '../users/user.js';
+
 
 const resolverInscripciones = {
+	Inscripcion: {
+		proyecto: async (parent, args, context) => {
+		  return await ProjectModel.findOne({ _id: parent.proyecto });
+		},
+		estudiante: async (parent, args, context) => {
+		  return await UserModel.findOne({ _id: parent.estudiante });
+		},
+	  },
+
 	Query: {
 		Inscripciones: async (parents, args) => {
 			const registros = await InscriptionModel.find()
 				.populate('estudiante')
 				.populate('proyecto');
 
-			return inscripciones;
+			return registros;
 		},
 	},
 
@@ -16,9 +28,6 @@ const resolverInscripciones = {
 			const nuevoRegistro = await InscriptionModel.create({
 				proyecto: args.proyecto,
 				estudiante: args.estudiante,
-				estado: args.estado,
-				fechaIngreso: args.fechaIngreso,
-				fechaEgreso: args.fechaEgreso,
 			});
 
 			return nuevoRegistro;
