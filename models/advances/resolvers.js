@@ -1,5 +1,5 @@
 import { AdvancesModel } from './advance.js';
-
+//import { ProjectModel } from '../projects/project.js';
 const advancesResolver = {
 	Query: {
 		Avances: async (parents, args) => {
@@ -42,8 +42,8 @@ const advancesResolver = {
 		},
 
 		createAvance: async (parent,args)=>{
-			const proyectWithAvance= await ProjectModel.findByIdAndUpdate(
-				args.idProyecto,
+			const proyectWithAvance= await AdvancesModel.findByIdAndUpdate(
+				args.id,
 				{
 					$addToSet:{
 						observaciones:args.observaciones
@@ -52,7 +52,7 @@ const advancesResolver = {
 				{new:true}				
 			);
 
-			return createAvance;
+			return proyectWithAvance;
 		}
 	},
 };

@@ -1,7 +1,7 @@
 import { ProjectModel } from './project.js';
 import { UserModel } from '../users/user.js';
 import { InscriptionModel } from '../registrations/registration.js';
-import { AdvancesModel } from '../advances/advance.js';
+//import { AdvancesModel } from '../advances/advance.js';
 const projectResolvers = {
 
 	Proyecto: {
