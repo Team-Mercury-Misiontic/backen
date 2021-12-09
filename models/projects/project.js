@@ -15,11 +15,11 @@ const projectSchema = new Schema(
 		},
 		fechaInicio: {
 			type: Date,
-			required: true,
+			required: false,
 		},
 		fechaFin: {
 			type: Date,
-			required: true,
+			required: false,
 		},
 		estado: {
 			type: String,
