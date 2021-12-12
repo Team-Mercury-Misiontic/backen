@@ -22,6 +22,15 @@ const userResolvers = {
 			const usuario = await UserModel.findOne({ _id: args._id });
 			return usuario;
 		},
+
+		Estudiantes: async (parent, args) => {
+			const estudiantes = await UserModel.find()
+			.where({rol:'ESTUDIANTE'})
+			.populate('inscripciones')
+
+			return estudiantes
+		
+		}
 	},
 
 	Mutation: {
