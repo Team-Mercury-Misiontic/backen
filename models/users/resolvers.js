@@ -42,22 +42,28 @@ const userResolvers = {
 
 	Mutation: {
 		crearUsuario: async (parent, args) => {
-			const salt = await bcrypt.genSalt(10);
-			const hashedPassword = await bcrypt.hash(args.password, salt);
-			const usuarioCreado = await UserModel.create({
-			  nombre: args.nombre,
-			  apellido: args.apellido,
-			  identificacion: args.identificacion,
-			  correo: args.correo,
-			  rol: args.rol,
-			  password: hashedPassword,
-			});
+			const usuarioEcontrado = await UserModel.findOne({ correo: args.correo }); 
+        	if(usuarioEcontrado){
+          		throw new Error('Este correo ya fue registrado');
+        	}else{
 
-			if (Object.keys(args).includes('estado')) {
-				usuarioCreado.estado = args.estado;
-			}
+				const salt = await bcrypt.genSalt(10);
+				const hashedPassword = await bcrypt.hash(args.password, salt);
+				const usuarioCreado = await UserModel.create({
+				nombre: args.nombre,
+				apellido: args.apellido,
+				identificacion: args.identificacion,
+				correo: args.correo,
+				rol: args.rol,
+				password: hashedPassword,
+				});
 
-			return usuarioCreado;
+				if (Object.keys(args).includes('estado')) {
+					usuarioCreado.estado = args.estado;
+				}
+
+				return usuarioCreado;
+			}	
 		},
 
 		editarUsuario: async (parent, args) => {

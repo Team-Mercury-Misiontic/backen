@@ -14,13 +14,26 @@ const resolverInscripciones = {
 	  },
 
 	Query: {
-		Inscripciones: async (parents, args) => {
-			const registros = await InscriptionModel.find()
-				.populate('estudiante')
-				.populate('proyecto');
-
-			return registros;
-		},
+		Inscripciones: async (parent, args, context) => {
+			let filtro = {};
+			if (context.userData) {
+			  if (context.userData.rol === 'LIDER') {
+				const projects = await ProjectModel.find({ lider: context.userData._id });
+				const projectList = projects.map((p) => p._id.toString());
+				filtro = {
+				  proyecto: {
+					$in: projectList,
+				  },
+				};
+			  }
+			}
+			const inscripciones = await InscriptionModel.find({ ...filtro });
+			return inscripciones;
+		  },
+	  
+		  // inscripcionesNoAprobadas: async () => {
+		  //   const ina = await InscriptionModel.find({ estado: 'PENDIENTE' }).populate('estudiante');
+		  // },
 	},
 
 	Mutation: {
@@ -42,6 +55,17 @@ const resolverInscripciones = {
 			  { new: true }
 			);
 			return inscripcionAprobada;
+		  },
+		  rechazarInscripcion: async (parent, args) => {
+			const inscripcionRechazada = await InscriptionModel.findByIdAndUpdate(
+			  args.id,
+			  {
+				estado: 'RECHAZADA',
+				fechaIngreso: Date.now(),
+			  },
+			  { new: true }
+			);
+			return inscripcionRechazada;
 		  },
 	},
 };

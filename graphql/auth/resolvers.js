@@ -6,6 +6,10 @@ import { generateToken } from '../../utils/tokenUtils.js';
 const resolverAuthentication={
     Mutation:{
         register: async (parent,args)=>{
+          const usuarioEcontrado = await UserModel.findOne({ correo: args.correo }); 
+        	if(usuarioEcontrado){
+          		throw new Error('Este correo ya fue registrado');
+        	}else{
             const salt = await bcrypt.genSalt(10);
             const hashedPassword=await bcrypt.hash(args.password,salt);
             const userCreated= await UserModel.create({
@@ -26,20 +30,27 @@ const resolverAuthentication={
                     rol: userCreated.rol,
                   }),
             };
+          }  
         },
         login: async (parent, args) => {
-        const usuarioEcontrado = await UserModel.findOne({ correo: args.correo });       
-            if (await bcrypt.compare(args.password, usuarioEcontrado.password)) {
-              return {
-                token: generateToken({
-                  _id: usuarioEcontrado._id,
-                  nombre: usuarioEcontrado.nombre,
-                  apellido: usuarioEcontrado.apellido,
-                  identificacion: usuarioEcontrado.identificacion,
-                  correo: usuarioEcontrado.correo,
-                  rol: usuarioEcontrado.rol,
-                }),
-              };
+        const usuarioEcontrado = await UserModel.findOne({ correo: args.correo }); 
+        if(!usuarioEcontrado){
+          throw new Error('El usuario no existe');
+        }
+        const passwordCorrecto = await bcrypt.compare(args.password, usuarioEcontrado.password);    
+            if (!passwordCorrecto) {
+                throw new Error('El password es incorrecto');
+              }else{
+                return {
+                  token: generateToken({
+                    _id: usuarioEcontrado._id,
+                    nombre: usuarioEcontrado.nombre,
+                    apellido: usuarioEcontrado.apellido,
+                    identificacion: usuarioEcontrado.identificacion,
+                    correo: usuarioEcontrado.correo,
+                    rol: usuarioEcontrado.rol,
+                  }),
+              }
             }
           },
       
