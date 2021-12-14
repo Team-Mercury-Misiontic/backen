@@ -67,7 +67,17 @@ const resolverInscripciones = {
 			);
 			return inscripcionRechazada;
 		  },
+		  finalizarInscripcion: async (parent, args) => {
+			const inscripcionFinalizada = await InscriptionModel.updateMany(
+				{proyecto:args.id},
+			  {
+				fechaEgreso: Date.now(),
+			  },
+			  { new: true }
+			);
+			return inscripcionFinalizada;
+		  },
 	},
 };
 
-export { resolverInscripciones };
+export { resolverInscripciones};

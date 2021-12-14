@@ -22,6 +22,7 @@ const registrationTypes = gql`
 		
 		aprobarInscripcion(id: String!): Inscripcion
 		rechazarInscripcion(id: String!): Inscripcion
+		finalizarInscripcion(id: String!): Inscripcion
 	}
 `;
 

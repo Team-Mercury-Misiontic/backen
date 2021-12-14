@@ -7,11 +7,12 @@ const advancesTypes = gql`
 		fecha: Date
 		descripcion: String!
 		observaciones: [String]
-		creadoPor: Usuario!
+		creadoPor: Usuario
 	}
 
 	type Query {
 		Avances: [Avance]
+		# filtrarAvance: [Avance]
 		filtrarAvance(_id: String!): [Avance]
 
 	}

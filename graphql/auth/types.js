@@ -18,6 +18,7 @@ const typesAuthentication =gql `
             password: String!
         ):Token
         login(correo: String!, password: String!): Token
+        cambiarClave(correo: String, password:String, clave: String): String
 
         refreshToken: Token
     }

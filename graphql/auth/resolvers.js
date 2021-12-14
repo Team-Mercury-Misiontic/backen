@@ -41,19 +41,40 @@ const resolverAuthentication={
             if (!passwordCorrecto) {
                 throw new Error('El password es incorrecto');
               }else{
-                return {
-                  token: generateToken({
-                    _id: usuarioEcontrado._id,
-                    nombre: usuarioEcontrado.nombre,
-                    apellido: usuarioEcontrado.apellido,
-                    identificacion: usuarioEcontrado.identificacion,
-                    correo: usuarioEcontrado.correo,
-                    rol: usuarioEcontrado.rol,
-                  }),
-              }
+                if(usuarioEcontrado.estado==='PENDIENTE'){
+                  throw new Error('No puedes iniciar sesión, su cuenta aun no ha sido aprobada por un Administrador o Líder');
+                }else{
+                  return {
+                    token: generateToken({
+                      _id: usuarioEcontrado._id,
+                      nombre: usuarioEcontrado.nombre,
+                      apellido: usuarioEcontrado.apellido,
+                      identificacion: usuarioEcontrado.identificacion,
+                      correo: usuarioEcontrado.correo,
+                      rol: usuarioEcontrado.rol,
+                    }),
+                 }
+                }
+
             }
           },
-      
+          
+          cambiarClave: async (parent, args) =>{
+            let usuarioEcontrado = await UserModel.findOne({ correo: args.correo });
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword=await bcrypt.hash(args.password,salt); 
+            if(!usuarioEcontrado){
+              throw new Error('El usuario no existe');
+            }
+            const passwordCorrecto = await bcrypt.compare(args.clave, usuarioEcontrado.password);    
+                if (!passwordCorrecto) {
+                    throw new Error('El password es incorrecto');
+                  }else{
+                    usuarioEcontrado = await UserModel.findOneAndUpdate({correo: args.correo}, {password: hashedPassword}, {new: true} );
+                    return "Cambio realizado"
+                  }
+          },
+
           refreshToken: async (parent, args, context) => {
             console.log('contexto', context);
             if(!context.userData){
