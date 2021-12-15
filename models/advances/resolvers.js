@@ -67,7 +67,7 @@ const advancesResolver = {
 				args.id,
 				{
 					descripcion: args.descripcion,
-					fecha: Date.now(),
+					fecha: args.fecha
 				},
 				{ new: true }
 			);
