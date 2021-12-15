@@ -41,6 +41,12 @@ const advancesResolver = {
 			  .populate('creadoPor');
 			return avanceFiltrado;
 		  },
+		  avanceFiltrado: async (parents, args) => {
+			const avanceFiltrado = await AdvancesModel.find({ _id: args._id })
+			 .populate('proyecto')
+			  .populate('creadoPor');
+			return avanceFiltrado;
+		  },  
 	},
 	
 

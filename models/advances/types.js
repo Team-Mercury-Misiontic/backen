@@ -12,8 +12,8 @@ const advancesTypes = gql`
 
 	type Query {
 		Avances: [Avance]
-		# filtrarAvance: [Avance]
 		filtrarAvance(_id: String!): [Avance]
+		avanceFiltrado(_id: String!): [Avance]
 
 	}
 	
