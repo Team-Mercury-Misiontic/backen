@@ -69,13 +69,14 @@ const resolverInscripciones = {
 		  },
 		  finalizarInscripcion: async (parent, args) => {
 			const inscripcionFinalizada = await InscriptionModel.updateMany(
-				{proyecto:args.id},
+				{proyecto:args.id, estado:'ACEPTADA',fechaEgreso:null},
 			  {
 				fechaEgreso: Date.now(),
 			  },
 			  { new: true }
 			);
 			return inscripcionFinalizada;
+			//return "Cambio realizado";
 		  },
 	},
 };
